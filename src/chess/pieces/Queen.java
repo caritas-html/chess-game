@@ -10,6 +10,9 @@ public class Queen extends ChessPiece {
     }
     @Override
     public String toString() {
-        return "Q";
+        char[] unicode = Character.toChars(9813);
+        String unicodeString = new String(unicode);
+        return " " + unicodeString + " ";
+
     }
 }

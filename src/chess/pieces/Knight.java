@@ -10,6 +10,9 @@ public class Knight extends ChessPiece {
     }
     @Override
     public String toString() {
-        return "K";
+        char[] unicode = Character.toChars(9816);
+        String unicodeString = new String(unicode);
+        return " " + unicodeString + " ";
+
     }
 }

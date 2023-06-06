@@ -10,7 +10,10 @@ public class Rook extends ChessPiece {
     }
     @Override
     public String toString() {
-        return "R";
+        char[] unicode = Character.toChars(9814);
+        String unicodeString = new String(unicode);
+        return "" + unicodeString + " ";
+
     }
 }
 

@@ -16,10 +16,6 @@ public class Position {
                 return column;
         }
 
-        public void setRow(int row) {
-                this.row = row;
-        }
-
         @Override
         public String toString() {
                 return row + ", " + column;

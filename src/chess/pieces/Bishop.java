@@ -10,6 +10,9 @@ public class Bishop extends ChessPiece {
     }
     @Override
     public String toString() {
-        return "B";
+        char[] unicode = Character.toChars(9815);
+        String unicodeString = new String(unicode);
+        return "" + unicodeString + " ";
+
     }
 }
