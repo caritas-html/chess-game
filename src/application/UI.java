@@ -5,6 +5,7 @@ import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class UI {
@@ -38,13 +39,18 @@ public class UI {
         }
     }
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static void printBoard(ChessPiece[][] pieces) {
 //        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("   ------------------------------------");
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8 - i) + "  | ");
             for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j]);
+                printPiece(pieces[i][j], false);
             }
             System.out.println("|");
 
@@ -53,16 +59,37 @@ public class UI {
         System.out.println("     A   B   C   D   E   F   G   H");
     }
 
-    private static void printPiece (ChessPiece piece) {
-        if (piece == null) {
-            System.out.print(" - ");
-        } else {
-            if (piece.getColor() == Color.WHITE) {
-                System.out.print(ANSI_WHITE + piece + ANSI_RESET);
-            } else {
-                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+    public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+//        System.out.println("Jogo de Xadrez para camaradas \u262D");
+        System.out.println("   ------------------------------------------------");
+        for (int i = 0; i < pieces.length; i++) {
+            System.out.print((8 - i) + "  | ");
+            for (int j = 0; j < pieces.length; j++) {
+                printPiece(pieces[i][j], possibleMoves[i][j]);
             }
+            System.out.print("| ");
+
         }
-        System.out.print(" ");
     }
-}
+    private static void printPiece (ChessPiece piece, boolean background) {
+
+        if(background) {
+            System.out.print(ANSI_GREEN_BACKGROUND);
+        }
+        if (piece == null) {
+            System.out.print("____  ");
+        }
+        else {
+            if (piece.getColor() == Color.WHITE) {
+                System.out.print(ANSI_WHITE + "|" + piece + "|" + ANSI_RESET);
+                System.out.print("  ");
+            }
+                else {
+                System.out.print(ANSI_YELLOW + "|" + piece + "|" + ANSI_RESET);
+                System.out.print("  ");
+                }
+
+            }
+        System.out.print(" ");
+        }
+    }
