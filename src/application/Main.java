@@ -10,25 +10,36 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ChessMatch chessMatch = new ChessMatch();
         Scanner sc = new Scanner(System.in);
+        ChessMatch chessMatch = new ChessMatch();
 
         //teste
         while (true) {
-                UI.printBoard(chessMatch.getPieces());
-                System.out.println();
-                System.out.println("Source: ");
-                ChessPosition source = UI.readChessPosition(sc);
+            try {
+            UI.clearScreen();
+            UI.printBoard(chessMatch.getPieces());
+            System.out.println();
+            System.out.println("Source: ");
+            ChessPosition source = UI.readChessPosition(sc);
 
-                boolean[][] possibleMoves = chessMatch.possibleMoves(source);
-                UI.clearScreen();
-                UI.printBoard(chessMatch.getPieces(), possibleMoves);
+            boolean[][] possibleMoves = chessMatch.possibleMoves(source);
 
-                System.out.println();
-                System.out.println("Target  ");
-                ChessPosition target = UI.readChessPosition(sc);
+            UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
-                ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+            System.out.println();
+            System.out.println("Target  ");
+            ChessPosition target = UI.readChessPosition(sc);
+
+            ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+            }
+                catch (ChessException e) {
+                System.out.println((e.getMessage()));
+                sc.nextLine();
+            }
+                catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
+                sc.nextLine();
+                }
         }
     }
 }
