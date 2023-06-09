@@ -1,6 +1,7 @@
 package application;
 
 import boardGame.BoardException;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -42,6 +43,13 @@ public class UI {
         } catch (RuntimeException e) {
             throw new BoardException("impossivel ler chess position");
         }
+    }
+
+    public static void printMatch(ChessMatch chessMatch) {
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("turn: " + chessMatch.getTurn());
+        System.out.println("waiting player :" + chessMatch.getCurrentPlayer());
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
