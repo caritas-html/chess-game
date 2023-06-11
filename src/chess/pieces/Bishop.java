@@ -12,7 +12,12 @@ public class Bishop extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9815);
         String unicodeString = new String(unicode);
-        return "" + unicodeString + " ";
+        return " " + unicodeString + "";
+    }
 
+    @Override
+    public boolean[][] possibleMoves() {
+        boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+        return mat;
     }
 }

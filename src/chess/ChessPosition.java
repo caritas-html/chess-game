@@ -4,18 +4,18 @@ import boardGame.BoardException;
 import boardGame.Position;
 
 public class ChessPosition {
-    private char column;
+    private int column;
     private int row;
 
-    public ChessPosition(char column, int row) {
-        if (column < 'a' || column > 'h' || row < 1 || row > 8) {
-            throw new BoardException("Erro estanciando ChessPosition");
-        }
+    public ChessPosition(int column, int row) {
+//        if (column < 'a' || column > 'h' || row < 1 || row > 8) {
+//            throw new BoardException("Erro estanciando ChessPosition");
+//        }
         this.column = column;
         this.row = row;
     }
 
-    public char getColumn() {
+    public int getColumn() {
         return column;
     }
 

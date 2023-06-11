@@ -12,7 +12,13 @@ public class Queen extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9813);
         String unicodeString = new String(unicode);
-        return " " + unicodeString + " ";
+        return " " + unicodeString + "";
 
+    }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+        return mat;
     }
 }
