@@ -98,14 +98,14 @@ public class ChessMatch {
 
         // black pieces
 
-        placeNewPiece('h',3, new Rook(board, Color.BLACK));
-        placeNewPiece('g',3, new Knight(board, Color.BLACK));
-        placeNewPiece('f',3, new Bishop(board, Color.BLACK));
-        placeNewPiece('e',3, new Queen(board, Color.BLACK));
-        placeNewPiece('d',3, new King(board, Color.BLACK));
-        placeNewPiece('c',3, new Bishop(board, Color.BLACK));
-        placeNewPiece('b',3, new Knight(board, Color.BLACK));
-        placeNewPiece('a',3, new Rook(board, Color.BLACK));
+        placeNewPiece('h',8, new Rook(board, Color.BLACK));
+        placeNewPiece('g',8, new Knight(board, Color.BLACK));
+        placeNewPiece('f',8, new Bishop(board, Color.BLACK));
+        placeNewPiece('e',8, new King(board, Color.BLACK));
+        placeNewPiece('d',8, new Queen(board, Color.BLACK));
+        placeNewPiece('c',8, new Bishop(board, Color.BLACK));
+        placeNewPiece('b',8, new Knight(board, Color.BLACK));
+        placeNewPiece('a',8, new Rook(board, Color.BLACK));
 
     }
 }

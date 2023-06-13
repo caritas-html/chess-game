@@ -13,7 +13,7 @@ public class King extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9812);
         String unicodeString = new String(unicode);
-        return "  " + unicodeString + "";
+        return "" + unicodeString + "";
     }
 
     private boolean canMove (Position position) {

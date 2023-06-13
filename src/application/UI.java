@@ -20,8 +20,8 @@ public class UI {
     public static final String ANSI_CYAN = "\u001B[50m";
     public static final String ANSI_WHITE = "\u001B[50m";
 
-    public static final String FULL_BLOCK = " \u2B1C";
-    public static final String FULL_BLOCK_WHITE = " \u2B1B";
+    public static final String FULL_BLOCK_WHITE = " \u2B1C";
+    public static final String FULL_BLOCK = " \u2B1B";
 
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[50m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[50m";
@@ -32,7 +32,10 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[50m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[50m";
 
+    public static int fullBoardLength = 64;
     public static boolean changer = true;
+    public static int counter = 0;
+
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -59,21 +62,19 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
-
 //        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("   ------------------------------------");
         for (int i = 0; i < 8; i++) {
             System.out.print((8 - i));
-            changer = !changer; // para alternar as cores do tabuleiro
-            for (int j = 0; j < 4; j++) {
-
-
-
-                    printPiece(pieces[i][j], false);
-
+            changer = !changer;
+            for (int j = 0; j < 8; j++) {
+                printPiece(pieces[i][j], false);
             }
+
             System.out.printf("%n");
         }
+        System.out.printf("%n");
+
         System.out.println("   ------------------------------------");
         System.out.println("     A   B   C   D   E   F   G   H");
     }
@@ -81,45 +82,49 @@ public class UI {
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
         System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("   ------------------------------------------------");
-        for (int i = 0; i < pieces.length; i++) {
+        for (int i = 0; i < 8; i++) {
             System.out.print((8 - i));
-            for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j], possibleMoves[i][j]);
+            for (int j = 0; j < 8; j++) {
+                if (i % 2 == 0 || j % 2 == 0) {
+                    printPiece(pieces[i][j], possibleMoves[i][j]);
+                } else {
+                    printPiece(pieces[i][j], possibleMoves[i][j]);
+                }
             }
-//            System.out.println("|");
+            System.out.printf("%n");
         }
         System.out.println("   ------------------------------------");
         System.out.println("     A   B   C   D   E   F   G   H");
     }
     private static void printPiece (ChessPiece pieces, boolean background) {
-
         String colorBackground = ANSI_GREEN_BACKGROUND;
+
 
         if(background) {
             System.out.print(colorBackground + ANSI_RESET);
         }
 
-        if ( pieces == null) {
-            if (changer) {
-                System.out.print(FULL_BLOCK_WHITE);
-                System.out.print(FULL_BLOCK);
-            }  else {
-                System.out.print(FULL_BLOCK);
-                System.out.print(FULL_BLOCK_WHITE);
+       if (pieces == null) {
+           if (changer) {
+               System.out.print(FULL_BLOCK);
+           } else {
+               System.out.print(FULL_BLOCK_WHITE);
+           }
+       }
+       else {
+           if (pieces.getColor() == Color.WHITE) {
+               System.out.print(ANSI_WHITE + pieces + ANSI_RESET);
+               System.out.print("  ");
 
-                }
-            }
-        else {
-            if (pieces.getColor() == Color.WHITE) {
-                System.out.print(ANSI_WHITE + pieces + ANSI_RESET);
-                System.out.print("  ");
-            }
-                else {
-                System.out.print(ANSI_YELLOW  + pieces + ANSI_RESET);
-                System.out.print("  ");
-                }
+       }
+           else {
+               System.out.print(ANSI_BLACK + pieces + ANSI_RESET);
+               System.out.print("  ");
 
-            }
-        }
+           }
+
+       }
+       changer = !changer;
     }
+}
 
