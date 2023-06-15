@@ -1,5 +1,6 @@
 package chess.pieces;
 
+import application.UI;
 import boardGame.Board;
 import boardGame.Position;
 import chess.ChessPiece;
@@ -13,7 +14,7 @@ public class King extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9812);
         String unicodeString = new String(unicode);
-        return "" + unicodeString + "";
+        return " " + UI.UNISPACE + unicodeString + " ";
     }
 
     private boolean canMove (Position position) {

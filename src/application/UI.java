@@ -11,30 +11,32 @@ import java.util.Scanner;
 
 public class UI {
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[50m";
+    public static final String ANSI_BLACK = "\u001B[31m";
     public static final String ANSI_RED = "\u001B[50m";
     public static final String ANSI_GREEN = "\u001B[50m";
     public static final String ANSI_YELLOW = "\u001B[50m";
     public static final String ANSI_BLUE = "\u001B[50m";
     public static final String ANSI_PURPLE = "\u001B[50m";
     public static final String ANSI_CYAN = "\u001B[50m";
-    public static final String ANSI_WHITE = "\u001B[50m";
+    public static final String ANSI_WHITE = "\u001B[34m";
 
-    public static final String FULL_BLOCK_WHITE = " \u2B1C";
-    public static final String FULL_BLOCK = " \u2B1B";
+    public static final String UNISPACE = "\u2009";
+    public static final String FULL_BLOCK_WHITE = "⬜" + UNISPACE + UNISPACE;
+    public static final String FULL_BLOCK =  "⬛" + UNISPACE + UNISPACE;
 
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[50m";
+    public static final String RIGHT_BACKGROUND = "▕";
+    public static final String LEFT_BACKGROUND = "▏";
+
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
     public static final String ANSI_GREEN_BACKGROUND = "\u001B[50m";
     public static final String ANSI_YELLOW_BACKGROUND = "\u001B[50m";
     public static final String ANSI_BLUE_BACKGROUND = "\u001B[50m";
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[50m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[50m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    public static int fullBoardLength = 64;
     public static boolean changer = true;
-    public static int counter = 0;
 
 
     public static void clearScreen() {
@@ -45,9 +47,10 @@ public class UI {
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
             String s = sc.nextLine();
-            int column = 9;
-            int row = 9;
+            char column = s.charAt(0);
+            int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
+
         } catch (RuntimeException e) {
             throw new BoardException("impossivel ler chess position");
         }
@@ -62,67 +65,54 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
-//        System.out.println("Jogo de Xadrez para camaradas \u262D");
-        System.out.println("   ------------------------------------");
+        System.out.println("Jogo de Xadrez para camaradas \u262D");
+        System.out.println("------------------------------------");
         for (int i = 0; i < 8; i++) {
-            System.out.print((8 - i));
+            System.out.print((8 - i) + " / ");
             changer = !changer;
             for (int j = 0; j < 8; j++) {
                 printPiece(pieces[i][j], false);
             }
-
             System.out.printf("%n");
         }
-        System.out.printf("%n");
-
-        System.out.println("   ------------------------------------");
-        System.out.println("     A   B   C   D   E   F   G   H");
+        System.out.println("------------------------------------");
+        System.out.println("      a   b   c   d   e   f   g   h ");
     }
 
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
         System.out.println("Jogo de Xadrez para camaradas \u262D");
-        System.out.println("   ------------------------------------------------");
+        System.out.println("------------------------------------------------");
         for (int i = 0; i < 8; i++) {
-            System.out.print((8 - i));
+            System.out.print((8 - i) + " / ");
+            changer = !changer;
             for (int j = 0; j < 8; j++) {
-                if (i % 2 == 0 || j % 2 == 0) {
-                    printPiece(pieces[i][j], possibleMoves[i][j]);
-                } else {
-                    printPiece(pieces[i][j], possibleMoves[i][j]);
-                }
+                printPiece(pieces[i][j], possibleMoves[i][j]);
             }
+
             System.out.printf("%n");
         }
-        System.out.println("   ------------------------------------");
-        System.out.println("     A   B   C   D   E   F   G   H");
+        System.out.println("------------------------------------");
+        System.out.println("      a   b   c   d   e   f   g   h ");
     }
     private static void printPiece (ChessPiece pieces, boolean background) {
-        String colorBackground = ANSI_GREEN_BACKGROUND;
-
-
         if(background) {
-            System.out.print(colorBackground + ANSI_RESET);
+            System.out.print(ANSI_WHITE_BACKGROUND);
         }
 
        if (pieces == null) {
            if (changer) {
-               System.out.print(FULL_BLOCK);
+               System.out.print(UNISPACE + UNISPACE +FULL_BLOCK + UNISPACE + ANSI_RESET);
            } else {
-               System.out.print(FULL_BLOCK_WHITE);
+               System.out.print(UNISPACE + UNISPACE + FULL_BLOCK_WHITE + UNISPACE + ANSI_RESET);
            }
        }
        else {
            if (pieces.getColor() == Color.WHITE) {
-               System.out.print(ANSI_WHITE + pieces + ANSI_RESET);
-               System.out.print("  ");
-
+               System.out.print(ANSI_BLACK + pieces + UNISPACE + ANSI_RESET);
        }
            else {
-               System.out.print(ANSI_BLACK + pieces + ANSI_RESET);
-               System.out.print("  ");
-
+               System.out.print(ANSI_WHITE + pieces + UNISPACE + ANSI_RESET);
            }
-
        }
        changer = !changer;
     }

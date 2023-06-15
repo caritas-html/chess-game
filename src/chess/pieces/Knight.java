@@ -12,7 +12,7 @@ public class Knight extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9816);
         String unicodeString = new String(unicode);
-        return "" + unicodeString + "";
+        return " " + unicodeString + " ";
     }
 
     @Override

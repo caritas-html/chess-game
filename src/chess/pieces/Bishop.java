@@ -1,5 +1,6 @@
 package chess.pieces;
 
+import application.UI;
 import boardGame.Board;
 import chess.ChessPiece;
 import chess.Color;
@@ -12,7 +13,7 @@ public class Bishop extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9815);
         String unicodeString = new String(unicode);
-        return unicodeString + "";
+        return " " + unicodeString + " ";
     }
 
     @Override

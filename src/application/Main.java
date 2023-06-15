@@ -23,6 +23,7 @@ public class Main {
             ChessPosition source = UI.readChessPosition(sc);
 
             boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+            UI.clearScreen();
 
             UI.printBoard(chessMatch.getPieces(), possibleMoves);
 

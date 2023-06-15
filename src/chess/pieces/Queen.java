@@ -1,5 +1,6 @@
 package chess.pieces;
 
+import application.UI;
 import boardGame.Board;
 import chess.ChessPiece;
 import chess.Color;
@@ -12,7 +13,7 @@ public class Queen extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9813);
         String unicodeString = new String(unicode);
-        return "" + unicodeString + "";
+        return " " + UI.UNISPACE + unicodeString + " ";
 
     }
 
