@@ -66,14 +66,20 @@ public class UI {
         printCapturedPieces(captured);
         System.out.println();
         System.out.println("turn: " + chessMatch.getTurn());
-        System.out.println("waiting player :" + chessMatch.getCurrentPlayer());
-        if (chessMatch.getCheck()) {
-            System.out.println("Check!");
+        if (!chessMatch.getCheckMate()) {
+            System.out.println("waiting player :" + chessMatch.getCurrentPlayer());
+            if (chessMatch.getCheck()) {
+                System.out.println("Check!");
+            }
+        }
+        else {
+            System.out.println("CHECKMATE");
+            System.out.println("Winner: " + chessMatch.getCurrentPlayer());
         }
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
-        System.out.println("Jogo de Xadrez para camaradas \u262D");
+//        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("------------------------------------");
         for (int i = 0; i < 8; i++) {
             System.out.print((8 - i) + " / ");
@@ -88,7 +94,7 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
-        System.out.println("Jogo de Xadrez para camaradas \u262D");
+//        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("------------------------------------------------");
         for (int i = 0; i < 8; i++) {
             System.out.print((8 - i) + " / ");
