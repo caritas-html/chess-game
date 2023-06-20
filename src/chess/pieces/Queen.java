@@ -14,7 +14,7 @@ public class Queen extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9813);
         String unicodeString = new String(unicode);
-        return " " + UI.UNISPACE + unicodeString + " ";
+        return UI.DUNISPACE + unicodeString + UI.UNISPACE + UI.DUNISPACE;
 
     }
 

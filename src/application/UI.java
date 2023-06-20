@@ -17,29 +17,34 @@ public class UI {
     public static final String ANSI_RED = "\u001B[50m";
     public static final String ANSI_GREEN = "\u001B[50m";
     public static final String ANSI_YELLOW = "\u001B[50m";
-    public static final String ANSI_BLUE = "\u001B[50m";
+    public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[50m";
     public static final String ANSI_CYAN = "\u001B[50m";
-    public static final String ANSI_WHITE = "\u001B[34m";
+    public static final String ANSI_WHITE = "\u001B[31m";
 
     public static final String UNISPACE = "\u2009";
-    public static final String FULL_BLOCK_WHITE = "⬜" + UNISPACE + UNISPACE;
-    public static final String FULL_BLOCK = "⬛" + UNISPACE + UNISPACE;
+
+    public static final String DUNISPACE = UNISPACE + UNISPACE;
+
+    public static final String EMPTY_BLOCK = DUNISPACE + "\u2800" + UNISPACE;
 
     public static final String RIGHT_BACKGROUND = "▕";
     public static final String LEFT_BACKGROUND = "▏";
 
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[32m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
     public static final String ANSI_GREEN_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[50m";
+    public static final String ANSI_GRAY_BACKGROUND = "\u001B[48;5;245m";
     public static final String ANSI_BLUE_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[50m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[48;5;240m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[37m";
 
     public static boolean changer = true;
 
+    public static String switchBoardColor () {
+        return changer ? ANSI_YELLOW_BACKGROUND : ANSI_BLACK_BACKGROUND;
+    }
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
@@ -82,7 +87,7 @@ public class UI {
 //        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("------------------------------------");
         for (int i = 0; i < 8; i++) {
-            System.out.print((8 - i) + " / ");
+            System.out.print((8 - i) + " | ");
             changer = !changer;
             for (int j = 0; j < 8; j++) {
                 printPiece(pieces[i][j], false);
@@ -111,20 +116,22 @@ public class UI {
 
     private static void printPiece(ChessPiece pieces, boolean background) {
         if (background) {
-            System.out.print(ANSI_WHITE_BACKGROUND);
+            System.out.print(ANSI_BLACK_BACKGROUND);
         }
 
         if (pieces == null) {
             if (changer) {
-                System.out.print(UNISPACE + UNISPACE + FULL_BLOCK + UNISPACE + ANSI_RESET);
+                System.out.print(switchBoardColor () + DUNISPACE + EMPTY_BLOCK + UI.UNISPACE
+                        + UI.DUNISPACE + ANSI_RESET);
             } else {
-                System.out.print(UNISPACE + UNISPACE + FULL_BLOCK_WHITE + UNISPACE + ANSI_RESET);
+                System.out.print(switchBoardColor () + DUNISPACE + EMPTY_BLOCK + UI.UNISPACE
+                        + UI.DUNISPACE + ANSI_RESET);
             }
         } else {
             if (pieces.getColor() == Color.WHITE) {
-                System.out.print(ANSI_BLACK + pieces + UNISPACE + ANSI_RESET);
+                System.out.print(switchBoardColor() + UNISPACE + ANSI_BLUE + pieces  + ANSI_RESET);
             } else {
-                System.out.print(ANSI_WHITE + pieces + UNISPACE + ANSI_RESET);
+                System.out.print(switchBoardColor() + UNISPACE + ANSI_WHITE + pieces + ANSI_RESET);
             }
         }
         changer = !changer;
@@ -136,7 +143,7 @@ public class UI {
 
         System.out.println("captured pieces");
         System.out.print("white ");
-        System.out.print(ANSI_WHITE);
+        System.out.print(ANSI_BLUE);
         System.out.print(Arrays.toString(white.toArray()) + ANSI_RESET);
 
         System.out.println();

@@ -68,7 +68,7 @@ public class Pawn extends ChessPiece {
     }
     @Override
     public String toString() {
-        String unicode = "♙";
-        return UI.UNISPACE + UI.UNISPACE + unicode + " "  + UI.UNISPACE;
+        String unicode =  "♙";
+        return UI.DUNISPACE + unicode + UI.UNISPACE + UI.DUNISPACE;
     }
 }

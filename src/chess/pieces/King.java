@@ -14,7 +14,7 @@ public class King extends ChessPiece {
     public String toString() {
         char[] unicode = Character.toChars(9812);
         String unicodeString = new String(unicode);
-        return " " + UI.UNISPACE + unicodeString + " ";
+        return UI.DUNISPACE + unicodeString + UI.UNISPACE + UI.DUNISPACE;
     }
 
     private boolean canMove (Position position) {
