@@ -48,9 +48,10 @@ public class Main {
                 System.out.println(e.getMessage());
                 sc.nextLine();
                 }
+            UI.clearScreen();
+            UI.printMatch(chessMatch, captured);
         }
-        UI.clearScreen();
-        UI.printMatch(chessMatch, captured);
+
     }
 
 }

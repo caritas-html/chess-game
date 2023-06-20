@@ -34,16 +34,15 @@ public class UI {
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[32m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
     public static final String ANSI_GREEN_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_GRAY_BACKGROUND = "\u001B[48;5;245m";
     public static final String ANSI_BLUE_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[48;5;240m";
+    public static final String ANSI_GRAY_BACKGROUND = "\u001B[48;5;240m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[50m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[37m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[33m";
 
     public static boolean changer = true;
 
     public static String switchBoardColor () {
-        return changer ? ANSI_YELLOW_BACKGROUND : ANSI_BLACK_BACKGROUND;
+        return changer ? ANSI_GRAY_BACKGROUND : ANSI_BLACK_BACKGROUND;
     }
 
     public static void clearScreen() {
@@ -95,14 +94,14 @@ public class UI {
             System.out.printf("%n");
         }
         System.out.println("------------------------------------");
-        System.out.println("      a   b   c   d   e   f   g   h ");
+        System.out.println("     a   b  c  d   e  f   g  h ");
     }
 
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 //        System.out.println("Jogo de Xadrez para camaradas \u262D");
         System.out.println("------------------------------------------------");
         for (int i = 0; i < 8; i++) {
-            System.out.print((8 - i) + " / ");
+            System.out.print((8 - i) + " | ");
             changer = !changer;
             for (int j = 0; j < 8; j++) {
                 printPiece(pieces[i][j], possibleMoves[i][j]);
@@ -111,12 +110,12 @@ public class UI {
             System.out.printf("%n");
         }
         System.out.println("------------------------------------");
-        System.out.println("      a   b   c   d   e   f   g   h ");
+        System.out.println("     a   b  c  d   e  f   g  h ");
     }
 
     private static void printPiece(ChessPiece pieces, boolean background) {
-        if (background) {
-            System.out.print(ANSI_BLACK_BACKGROUND);
+        if (background) {[]
+            System.out.print(ANSI_YELLOW_BACKGROUND);
         }
 
         if (pieces == null) {
